@@ -1,0 +1,23 @@
+HTTrack3.49-2+htsswf+htsjava launched on Thu, 05 Aug 2021 14:02:38 at https://technext.github.io/electro/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://technext.github.io/electro/ -O1 "C:\wamp64\www\toko\public\template" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/fonts/glyphicons-halflings-regular.eot (from https://technext.github.io/electro/css/bootstrap.min.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/fonts/glyphicons-halflings-regular.eot? (from https://technext.github.io/electro/css/bootstrap.min.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/fonts/glyphicons-halflings-regular.woff2 (from https://technext.github.io/electro/css/bootstrap.min.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/fonts/glyphicons-halflings-regular.woff (from https://technext.github.io/electro/css/bootstrap.min.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/fonts/glyphicons-halflings-regular.ttf (from https://technext.github.io/electro/css/bootstrap.min.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/fonts/glyphicons-halflings-regular.svg (from https://technext.github.io/electro/css/bootstrap.min.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/css/ajax-loader.gif (from https://technext.github.io/electro/css/slick-theme.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/css/fonts/slick.eot (from https://technext.github.io/electro/css/slick-theme.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/css/fonts/slick.eot? (from https://technext.github.io/electro/css/slick-theme.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/css/fonts/slick.woff (from https://technext.github.io/electro/css/slick-theme.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/css/fonts/slick.ttf (from https://technext.github.io/electro/css/slick-theme.css)
+14:02:57	Error: 	"Not Found" (404) at link https://technext.github.io/electro/css/fonts/slick.svg (from https://technext.github.io/electro/css/slick-theme.css)
+
+HTTrack Website Copier/3.49-2 mirror complete in 19 seconds : 46 links scanned, 33 files written (4346359 bytes overall) [3608436 bytes received at 189917 bytes/sec], 1491239 bytes transferred using HTTP compression in 30 files, ratio 40%, 15.3 requests per connection
+(12 errors, 0 warnings, 0 messages)

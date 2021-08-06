@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+02:49:30	50479/50479	---M-Z	200	added ('OK')	text/html	etag:%22130ead8aceca40f77165568859c3cc4a%22	https://demo.hasthemes.com/karen-preview/karen/index.html	C:/wamp64/www/sakipmajalengka/public/assets/template/demo.hasthemes.com/karen-preview/karen/index.html	(from )
+02:49:31	25/25	---M--	200	added ('OK')	text/plain	date:Fri,%2007%20May%202021%2019:49:29%20GMT	https://demo.hasthemes.com/robots.txt		(from )
