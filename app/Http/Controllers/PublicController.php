@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\barang;
+use App\Models\Barang;
 use App\Models\Klien;
 use App\Models\Tmtahunopd;
 use App\Models\Tmuploaddonwload;

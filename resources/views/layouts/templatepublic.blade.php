@@ -40,6 +40,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+    {{-- <script defer='defer' src='https://santrikoding.com/js/custom.js' type='text/javascript'></script> --}}
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/jquery.min.js"></script>
 
 
@@ -58,7 +59,7 @@
                 </ul>
                 <ul class="header-links pull-right">
                     <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                    <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                    <li><a href="/account"><i class="fa fa-user-o"></i> My Account</a></li>
                 </ul>
             </div>
         </div>
