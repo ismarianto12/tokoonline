@@ -13,7 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('', [App\Http\Controllers\PublicController::class, 'index']);
+Route::get('', [App\Http\Controllers\PublicController::class, 'index'])->name('/');
+Route::get('index.html', [App\Http\Controllers\PublicController::class, 'index'])->name('index.html');
+
 Route::get('/contact', [App\Http\Controllers\PublicController::class, 'contact'])->name('contact');
 
 Route::get('/about', [App\Http\Controllers\PublicController::class, 'about'])->name('about');
