@@ -86,17 +86,21 @@
         $(function() {
             $('.register').show();
             $('#simpan').on('submit', function(e) {
+                $(this).attr('readonly');
                 e.preventDefault();
                 $.ajax({
                     url: '{{ route('register_act') }}',
                     data: $(this).serialize(),
                     chace: false,
                     asynch: false,
+                    method: 'post',
                     success: function(data) {
+                        var email = $('input[name="email"]').val();
                         $('.register').hide();
                         $('.ket').html(
-                            '<div class="alert alert-info">Pendaftaran berhasil di lakukan</div>'
-                        );
+                            '<div class="alert alert-info">Pendaftaran berhasil di lakukan' +
+                            +'Silahkan login dengan username email :' + email +
+                            'dan password yand di input</div>');
                     },
                     error: function(data) {
                         $('.register').show();

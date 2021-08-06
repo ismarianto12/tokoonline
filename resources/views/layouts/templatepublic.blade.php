@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from technext.github.io/electro/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Aug 2021 07:02:40 GMT -->
-<!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Ecommerce</title>
+    <title>{{ $title }}</title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -43,6 +40,8 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+    <script src="{{ asset('/template/technext.github.io/electro/js/') }}/jquery.min.js"></script>
+
 
 </head>
 
@@ -74,8 +73,10 @@
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="#" class="logo">
-                                <img src="{{ asset('/template/technext.github.io/electro/') }}/img/logo.png" alt="">
+                            <a href="#" class="logo" style="display: inline">
+                                <img src="{{ asset('/template/technext.github.io/electro/') }}/img/logo.png" alt=""
+                                    class="img-responsive" style="height: 100px;width:100px">
+                                <h3 style="color: #fff"> Nocturnal - Second</h3>
                             </a>
                         </div>
                     </div>
@@ -250,7 +251,6 @@
     <!-- /FOOTER -->
 
     <!-- jQuery Plugins -->
-    <script src="{{ asset('/template/technext.github.io/electro/js/') }}/jquery.min.js"></script>
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/bootstrap.min.js"></script>
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/slick.min.js"></script>
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/nouislider.min.js"></script>
