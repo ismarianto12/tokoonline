@@ -5,10 +5,10 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-right">
-                    {{-- <button class="btn btn-primary btn-round ml-auto btn-sm" id="add_data">
+                    <button class="btn btn-primary btn-round ml-auto btn-sm" id="add_data">
                         <i class="fa fa-plus"></i>
                         Add Row
-                    </button> --}}
+                    </button>
                     <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
                         <i class="fa fa-minus"></i>
                         Delete selected
@@ -41,10 +41,14 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Pemesan</th>
-                                <th>Barang</th>
-                                <th>Qty</th>
-                                <th>Total Harga</th>
+                                <th>Email</th>
+                                <th>Nama</th>
+                                <th>No Telp</th>
+                                <th>Alamat</th>
+                                <th>Zip</th>
+                                <th>Kecamatan</th>
+                                <th>Kabupaten</th>
+                                <th>Negara</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
@@ -66,7 +70,7 @@
             order: [1, 'asc'],
             pageLength: 10,
             ajax: {
-                url: "{{ route('api.pesanan') }}",
+                url: "{{ route('api.klien') }}",
                 method: 'POST',
                 _token: "{{ csrf_token() }}",
             },
@@ -78,26 +82,39 @@
                     align: 'center',
                     className: 'text-center'
                 },
+
                 {
-                    data: 'nama',
-                    name: 'nama'
+                    data: 'email'
                 },
+
                 {
-                    data: 'nama_barang',
-                    name: 'nama_barang'
+                    data: 'nama'
                 },
+
                 {
-                    data: 'qty',
-                    name: 'qty'
+                    data: 'no_telp'
                 },
+
                 {
-                    data: 'total',
-                    name: 'total',
+                    data: 'alamat'
                 },
+
                 {
-                    data: 'action',
-                    name: 'action',
-                }
+                    data: 'zip'
+                },
+
+                {
+                    data: 'kecamatan'
+                },
+
+                {
+                    data: 'kabupaten'
+                },
+
+                {
+                    data: 'negara'
+                },
+
             ]
         });
         @include('layouts.tablechecked');
@@ -150,6 +167,12 @@
 
         // addd
         $(function() {
+            $('#add_data').on('click', function() {
+                $('#formmodal').modal('show');
+                addUrl = '{{ route('master.barang.create') }}';
+                $('#form_content').html('<center><h3>Loading ...</h3></center>').load(addUrl);
+            });
+
             // edit
             $('#datatable').on('click', '#edit', function(e) {
                 e.preventDefault();

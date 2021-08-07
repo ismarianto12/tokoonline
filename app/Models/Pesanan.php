@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pesanan extends Model
 {
     use HasFactory;
+    protected $table = 'pesanan';
+    public $incrementing = false;
+    public $datetime = false;
+    protected $guarded = [];
 }

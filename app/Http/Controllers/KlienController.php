@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Klien;
 use Illuminate\Http\Request;
 
+use DataTables;
 class KlienController extends Controller
 {
     /**
@@ -12,6 +13,16 @@ class KlienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $request;
+    protected $route;
+    protected $view;
+
+    function __construct(Request $request)
+    {
+        $this->request = $request;
+        $this->view    = '.klien.';
+        $this->route   = 'master.pesanan.';
+    }
     public function index()
     {
         $title = 'Master data client';
