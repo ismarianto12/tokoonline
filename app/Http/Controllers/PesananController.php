@@ -12,10 +12,23 @@ class PesananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $request;
+    protected $route;
+    protected $view;
+
+    function __construct(Request $request)
+    {
+        $this->request = $request;
+        $this->view    = '.pesanan.';
+        $this->route   = 'master.pesanan.';
+    }
+
+
     public function index()
     {
         //
-        $title = 'Master Data Produk';
+        $title = 'Data Pesanan';
         return view($this->view . 'index', compact('title'));
     }
 
