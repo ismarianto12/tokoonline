@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Tmparameterdoc;
 use App\Models\Tmunitkerja;
 use DataTables;
+use App\Models\Tmhalaman;
 
 class PublicController extends Controller
 {
@@ -50,15 +51,18 @@ class PublicController extends Controller
             throw $th;
         }
     }
-    public function paget($id)
+    public function page($id)
     {
-        $page = Tmhalaman::first($id);
-        return view('depan.page', compact('tahun', 'periode', 'title'));
+        $page = Tmhalaman::where('ket', $id)->first();
+        $cara_beli = isset($page->isi) ? $page->isi : '';
+        $title = 'Cara beli';
+        return view('depan.halaman', compact('cara_beli', 'title'));
     }
-    public function Pengukuran()
+    public function produk()
     {
-        $title = 'Pengukuran';
-        return view('depan.pengukuran', compact('title'));
+        $title = 'List Produk';
+        $produk = Barang::get();
+        return view('depan.produk', compact('title', 'produk'));
     }
     public function Evaluasi()
     {

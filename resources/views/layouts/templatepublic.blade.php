@@ -134,7 +134,8 @@
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">View Cart</a>
-                                        <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('cart.list') }}">Checkout <i
+                                                class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -169,9 +170,8 @@
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
                     <li class="active"><a href="{{ Url('/') }}">Home</a></li>
-                    <li><a href="#">Produk</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Cara Beli</a></li>
+                    <li><a href="{{ route('produk') }}">Produk</a></li>
+                    <li><a href="{{ route('page', 'carabeli') }}">Cara Beli</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                     <li><a href="#">Status Transaksi</a></li>
                 </ul>

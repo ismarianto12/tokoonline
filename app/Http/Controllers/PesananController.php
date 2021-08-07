@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pesanan;
+use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use DataTables;
 
