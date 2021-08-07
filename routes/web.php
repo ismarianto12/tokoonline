@@ -47,37 +47,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/index.html', [App\Http\Controllers\HomeController::class, 'index'])->name('index.html');
 
     Route::prefix('master')->name('master.')->group(function () {
-        Route::resource('unitkerja', App\Http\Controllers\TmunitkerjaController::class);
-        Route::resource('uploaddownload', App\Http\Controllers\TmuploaddonwloadController::class);
-        Route::resource('instansi', App\Http\Controllers\TminstansiController::class);
-        Route::resource('informasi', App\Http\Controllers\TminformasiController::class);
-        Route::resource('halaman', App\Http\Controllers\TmhalamanController::class);
-        Route::resource('tahun', App\Http\Controllers\TmtahunopdController::class);
-        Route::resource('tmparamterdoc', App\Http\Controllers\TmparameterdocController::class);
-
-        // addd resources
-        Route::resource('sasaran', App\Http\Controllers\SasaranController::class);
-        Route::resource('indikatorsasaran', App\Http\Controllers\IndikatorsasaranController::class);
-        Route::resource('targetkerja', App\Http\Controllers\TargetkerjaController::class);
-        Route::resource('targetpembiayaan', App\Http\Controllers\TargetpembiayaanController::class);
-        Route::resource('capaiankerja', App\Http\Controllers\CapaiankerjaController::class);
-        Route::resource('capaianpembiayaan', App\Http\Controllers\CapaianpembiayaanController::class);
-        Route::resource('realisasipembiayaan', App\Http\Controllers\RealisasipembiayaanController::class);
-        Route::resource('programkegiatan', App\Http\Controllers\ProgramkegiatanController::class);
-        Route::resource('peraturan', App\Http\Controllers\PeraturanController::class);
+        Route::resource('barang', App\Http\Controllers\BarangController::class);
+        Route::resource('pesanan', App\Http\Controllers\PesananController::class);
+        Route::resource('klien', App\Http\Controllers\KlienController::class);
+        // Route::resource('halaman', App\Http\Controllers\TminformasiController::class);
+        Route::resource('transaksi', App\Http\Controllers\PesananController::class);
     });
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('profil.aspx', [App\Http\Controllers\UserController::class, 'profile'])->name('profil.aspx');
         Route::post('update', [App\Http\Controllers\UserController::class, 'profilesave'])->name('update');
     });
     Route::prefix('api')->name('api.')->group(function () {
-        Route::post('unitkerja', [App\Http\Controllers\TmunitkerjaController::class, 'api'])->name('unitkerja');
-        Route::post('uploaddownload', [App\Http\Controllers\TmuploaddonwloadController::class, 'api'])->name('uploaddownload');
-        Route::post('instansi', [App\Http\Controllers\TminstansiController::class, 'api'])->name('instansi');
-        Route::post('informasi', [App\Http\Controllers\TminformasiController::class, 'api'])->name('informasi');
-        Route::post('halaman', [App\Http\Controllers\TmhalamanController::class, 'api'])->name('halaman');
-        Route::get('tahun', [App\Http\Controllers\TmtahunopdController::class, 'api'])->name('tahun');
-        Route::post('tmparamterdoc', [App\Http\Controllers\TmparameterdocController::class, 'api'])->name('tmparamterdoc');
+        Route::post('barang', [App\Http\Controllers\BarangController::class, 'api'])->name('barang');
+        Route::post('klien', [App\Http\Controllers\KlienController::class, 'api'])->name('klien');
+        Route::post('pesanan', [App\Http\Controllers\PesananController::class, 'api'])->name('pesanan');
+        Route::post('halaman', [App\Http\Controllers\TminformasiController::class, 'api'])->name('halaman');
         // gettotal
     });
 

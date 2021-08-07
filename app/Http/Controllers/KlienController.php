@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\klien;
+use App\Models\Klien;
 use Illuminate\Http\Request;
 
 class KlienController extends Controller
@@ -14,7 +14,8 @@ class KlienController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Master data client';
+        return view($this->view . 'index', compact('title'));
     }
 
     /**
@@ -22,6 +23,26 @@ class KlienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function api()
+    {
+        $data = Klien::get();
+        return DataTables::of($data)
+            ->editColumn('id', function ($p) {
+                return "<input type='checkbox' name='cbox[]' value='" . $p->id . "' />";
+            })
+            ->editColumn('action', function ($p) {
+                return  '<a href="" class="btn btn-warning btn-xs" id="edit" data-id="' . $p->id . '"><i class="fa fa-edit"></i>Edit </a> ';
+            }, true)
+            ->editColumn('gambar', function ($p) {
+                return '<img src="' . asset('file/gambar/' . $p->img) . '" alt="..."
+                                                        onerror="this.onerror=null;this.src=\'' . asset('assets/img/profile.jpg') . '\';"
+                                                        id="foto">';
+            }, true)
+            ->addIndexColumn()
+            ->rawColumns(['usercreate', 'foto_p', 'action', 'id'])
+            ->toJson();
+    }
     public function create()
     {
         //

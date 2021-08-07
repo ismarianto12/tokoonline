@@ -171,17 +171,17 @@ class Menu_app
         <div class="collapse" id="setting">
             <ul class="nav nav-collapse">
     ';
-        $menu .= self::set_menu(route('master.unitkerja.index'), 'Unit kerja');
-        $menu .= self::set_menu(route('master.uploaddownload.index'), 'Visi dan misi');
-        $menu .= self::set_menu(route('master.uploaddownload.index'), 'Tujuan');
-        $menu .= self::set_menu(route('master.sasaran.index'), 'Sasaran');
-        $menu .= self::set_menu(route('master.indikatorsasaran.index'), 'Indikator Sasaran');
-        $menu .= self::set_menu(route('master.targetkerja.index'), 'Target Kerja');
-        $menu .= self::set_menu(route('master.targetpembiayaan.index'), 'Target Pembiayaan');
-        $menu .= self::set_menu(route('master.capaiankerja.index'), 'Capaian Kerja');
-        $menu .= self::set_menu(route('master.capaianpembiayaan.index'), 'Capaian Pembiayaan');
-        $menu .= self::set_menu(route('master.realisasipembiayaan.index'), 'Realisasi Pembiayaan');
-        $menu .= self::set_menu(route('master.programkegiatan.index'), 'Program & Kegiatan');
+        // $menu .= self::set_menu(route('master.unitkerja.index'), 'Unit kerja');
+        // $menu .= self::set_menu(route('master.uploaddownload.index'), 'Visi dan misi');
+        // $menu .= self::set_menu(route('master.uploaddownload.index'), 'Tujuan');
+        // $menu .= self::set_menu(route('master.sasaran.index'), 'Sasaran');
+        // $menu .= self::set_menu(route('master.indikatorsasaran.index'), 'Indikator Sasaran');
+        // $menu .= self::set_menu(route('master.targetkerja.index'), 'Target Kerja');
+        // $menu .= self::set_menu(route('master.targetpembiayaan.index'), 'Target Pembiayaan');
+        // $menu .= self::set_menu(route('master.capaiankerja.index'), 'Capaian Kerja');
+        // $menu .= self::set_menu(route('master.capaianpembiayaan.index'), 'Capaian Pembiayaan');
+        // $menu .= self::set_menu(route('master.realisasipembiayaan.index'), 'Realisasi Pembiayaan');
+        // $menu .= self::set_menu(route('master.programkegiatan.index'), 'Program & Kegiatan');
 
 
         $menu .= '
@@ -190,15 +190,13 @@ class Menu_app
     </li> 
     ';
 
-        $menu .= self::menu_single(route('master.uploaddownload.index'), '<i class="fas fa-list"></i>', 'Produk');
-        $menu .= self::menu_single(route('master.tmparamterdoc.index'), '<i class="fas fa-copy"></i>', 'Client');
-        $menu .= self::menu_single(route('master.tahun.index'), '<i class="fas fa-copy"></i>', 'Transaksi');
-
-
-
-        $menu .= self::menu_single(route('master.informasi.index'), '<i class="fas fa-copy"></i>', 'Report ');
-        $menu .= self::menu_single(route('master.halaman.index'), '<i class="fas fa-desktop"></i>', 'Halaman');
-        $menu .= self::menu_single(route('master.tahun.index'), '<i class="fas fa-copy"></i>', 'User');
+        $menu .= self::menu_single(route('master.barang.index'), '<i class="fas fa-list"></i>', 'Produk');
+        $menu .= self::menu_single(route('master.klien.index'), '<i class="fas fa-copy"></i>', 'Client');
+        $menu .= self::menu_single(route('master.transaksi.index'), '<i class="fas fa-copy"></i>', 'Transaksi');
+  
+        // $menu .= self::menu_single(route('master.informasi.index'), '<i class="fas fa-copy"></i>', 'Report ');
+        // $menu .= self::menu_single(route('master.halaman.index'), '<i class="fas fa-desktop"></i>', 'Halaman');
+        // $menu .= self::menu_single(route('master.tahun.index'), '<i class="fas fa-copy"></i>', 'User');
         return $menu;
     }
 }

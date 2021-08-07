@@ -15,8 +15,30 @@ class PesananController extends Controller
     public function index()
     {
         //
+        $title = 'Master Data Produk';
+        return view($this->view . 'index', compact('title'));
     }
 
+
+    public function api()
+    {
+        $data = Pesanan::get();
+        return DataTables::of($data)
+            ->editColumn('id', function ($p) {
+                return "<input type='checkbox' name='cbox[]' value='" . $p->id . "' />";
+            })
+            ->editColumn('action', function ($p) {
+                return  '<a href="" class="btn btn-warning btn-xs" id="edit" data-id="' . $p->id . '"><i class="fa fa-edit"></i>Edit </a> ';
+            }, true)
+            ->editColumn('gambar', function ($p) {
+                return '<img src="' . asset('file/gambar/' . $p->img) . '" alt="..."
+                                                        onerror="this.onerror=null;this.src=\'' . asset('assets/img/profile.jpg') . '\';"
+                                                        id="foto">';
+            }, true)
+            ->addIndexColumn()
+            ->rawColumns(['usercreate', 'foto_p', 'action', 'id'])
+            ->toJson();
+    }
     /**
      * Show the form for creating a new resource.
      *
