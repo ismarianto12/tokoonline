@@ -13,9 +13,14 @@ class CartController extends Controller
     {
         $cartItems = Cart::getContent();
         $title = 'List Belanja';
-        return view('depan.cart', compact('cartItems','title'));
+        return view('depan.cart', compact('cartItems', 'title'));
     }
 
+    public function barang_json()
+    {
+        $cartItems = Cart::getContent();
+        return response()->json($cartItems);
+    }
 
     public function addToCart(Request $request)
     {

@@ -64,10 +64,10 @@ class PublicController extends Controller
         $produk = Barang::get();
         return view('depan.produk', compact('title', 'produk'));
     }
-    public function Evaluasi()
+    public function transaksi()
     {
-        $title = 'Evaluasi';
-        return view('depan.evaluasi', compact('title'));
+        $title = 'Status Transaksi';
+        return view('depan.transaksi', compact('title'));
     }
 
     public function Informasi()

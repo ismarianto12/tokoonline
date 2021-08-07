@@ -177,9 +177,7 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Darryldecode\Cart\CartServiceProvider::class
-
-
+        Darryldecode\Cart\CartServiceProvider::class 
 
     ],
 

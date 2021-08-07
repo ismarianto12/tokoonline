@@ -104,39 +104,10 @@
                                     <div class="qty">3</div>
                                 </a>
                                 <div class="cart-dropdown">
-                                    <div class="cart-list">
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="img/product01.png" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
+                                    <div class="cart-list" id="datanya">
+                                    </div>
 
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="img/product02.png" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                                <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-
-                                    </div>
-                                    <div class="cart-summary">
-                                        <small>3 Item(s) selected</small>
-                                        <h5>SUBTOTAL: $2940.00</h5>
-                                    </div>
-                                    <div class="cart-btns">
-                                        <a href="#">View Cart</a>
-                                        <a href="{{ route('cart.list') }}">Checkout <i
-                                                class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
+                                    <div class="tapak"></div>
                                 </div>
                             </div>
                             <!-- /Cart -->
@@ -173,7 +144,7 @@
                     <li><a href="{{ route('produk') }}">Produk</a></li>
                     <li><a href="{{ route('page', 'carabeli') }}">Cara Beli</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
-                    <li><a href="#">Status Transaksi</a></li>
+                    <li><a href="{{ route('transaksi') }}">Status Transaksi</a></li>
                 </ul>
                 <!-- /NAV -->
             </div>
@@ -252,11 +223,59 @@
     <!-- /FOOTER -->
 
     <!-- jQuery Plugins -->
+    <script>
+        $(function() {
+            $('#datanya').html('<b>Loading cart ..</b>');
+            $('.tapak').html('<b>Loading cart ..</b>');
+            $.ajax({
+                url: '{{ route('barang_json') }}',
+                chachec: false,
+                asynch: false,
+                dataType: 'json',
+                method: 'get',
+                success: function(respon) {
+                    tablelist = '';
+                    $.each(respon, function(index, value) {
+                        tablelist +=
+                            '<div class="product-widget">' +
+                            '<div class="product-img">' +
+                            '<img src="img/product01.png" alt="">' +
+                            '</div>' +
+                            '<div class="product-body">' +
+                            '<h3 class="product-name"><a href="#">product name goes here</a></h3>' +
+                            '<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>' +
+                            '</div>' +
+                            '<button class="delete"><i class="fa fa-close"></i></button>' +
+                            '</div>';
+                    });
+
+                    $('#datanya').html(tablelist);
+                    let tapak = '<br /><div class="cart-summary">' +
+                        '<small>3 Item(s) selected</small>' +
+                        '<h5>SUBTOTAL: $2940.00</h5>' +
+                        '</div>' +
+                        '<div class="cart-btns">' +
+                        '<a href="#">View Cart</a>' +
+                        '<a href="{{ route('cart.list') }}">Checkout <i class = "fa fa-arrow-circle-right"> </i></a> ' +
+                        '</div>';
+
+                    $('.tapak').html(tapak);
+                },
+                error: function(respon) {
+                    console.log(respon);
+                }
+
+            });
+
+        });
+    </script>
+
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/bootstrap.min.js"></script>
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/slick.min.js"></script>
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/nouislider.min.js"></script>
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/jquery.zoom.min.js"></script>
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/main.js"></script>
+
 
 </body>
 

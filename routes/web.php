@@ -23,6 +23,8 @@ Route::get('/produk', [App\Http\Controllers\PublicController::class, 'produk'])-
 
 
 Route::get('/register', [App\Http\Controllers\PublicController::class, 'register'])->name('register');
+Route::get('/transaksi', [App\Http\Controllers\PublicController::class, 'transaksi'])->name('transaksi');
+
 Route::post('/register_act', [App\Http\Controllers\PublicController::class, 'register_act'])->name('register_act');
 
 
@@ -33,6 +35,9 @@ Route::get('/evaluasi', [App\Http\Controllers\PublicController::class, 'about'])
 Route::get('/peraturan', [App\Http\Controllers\Front\PeraturanController::class, 'index'])->name('peraturan');
 // cart of data
 Route::get('cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('cart.list');
+// nnjson barang
+Route::get('barang_json', [App\Http\Controllers\CartController::class, 'barang_json'])->name('barang_json');
+
 Route::post('cart', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('cart.update');
 Route::post('remove', [App\Http\Controllers\CartController::class, 'removeCart'])->name('cart.remove');
