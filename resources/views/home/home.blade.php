@@ -40,15 +40,15 @@
                         <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
                             <div class="px-2 pb-2 pb-md-0 text-center">
                                 <div id="circles-1"></div>
-                                <h6 class="fw-bold mt-3 mb-0">Jumlah Proyek</h6>
+                                <h6 class="fw-bold mt-3 mb-0">Jumlah Produk</h6>
                             </div>
                             <div class="px-2 pb-2 pb-md-0 text-center">
                                 <div id="circles-2"></div>
-                                <h6 class="fw-bold mt-3 mb-0">Surat Perintah Kerja</h6>
+                                <h6 class="fw-bold mt-3 mb-0">Transaksi</h6>
                             </div>
                             <div class="px-2 pb-2 pb-md-0 text-center">
                                 <div id="circles-3"></div>
-                                <h6 class="fw-bold mt-3 mb-0">Progress Spk</h6>
+                                <h6 class="fw-bold mt-3 mb-0">Report</h6>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
             <div class="col-md-6">
                 <div class="card full-height">
                     <div class="card-body">
-                        <div class="card-title">Total List Rencana Anggaran per Proyek
+                        <div class="card-title">Pendapatan
                         </div>
                         <div class="row py-3">
                             <div class="col-md-4 d-flex flex-column justify-content-around">

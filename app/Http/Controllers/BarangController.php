@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\barang;
+use App\Models\Barang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DataTables;
