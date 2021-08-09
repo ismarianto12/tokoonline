@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Support\Facades\Auth;
 
-class Authenticate extends Middleware
+class UserLogin extends Middleware
 {
     /**
      * Get the path the user should be redirected to when they are not authenticated.
@@ -15,11 +15,8 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (!$request->expectsJson()) {
-            if (Auth::user()->client_id != '') {
-                return route('dashboarduser');
-            }
-            return route('login');
+        if (Auth::user()) {
+            return next($request);
         }
     }
 }

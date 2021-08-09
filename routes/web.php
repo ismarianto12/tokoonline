@@ -54,6 +54,12 @@ Route::prefix('api')->name('api.')->group(function () {
     // gettotal
 });
 // index end
+Route::group(['middleware' => ['web','user']], function () {
+    Route::get('dashboarduser', [App\Http\Controllers\PublicController::class, 'dashboarduser'])->name('dashboarduser');
+    Route::get('keranjang', [App\Http\Controllers\PublicController::class, 'keranjang'])->name('keranjang');
+    Route::get('transaksi', [App\Http\Controllers\PublicController::class, 'transaksi'])->name('transaksi');
+});
+
 
 Route::get('/Akses', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/loginact', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('loginact');

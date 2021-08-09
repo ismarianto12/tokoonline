@@ -31,7 +31,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                </tbody>
+                                    @php
+                                        $total = 0;
+                                    @endphp
+                                    @foreach ($data as $datas)
+                                        @php
+                                            $total += $datas->total;
+                                        @endphp
+                                        <tr>
+                                            <td> <img src="{{ asset('file/gambar/' . $datas['img']) }}" alt=""
+                                                    style="height: 100px;width:100px"></td>
+                                            <td>{{ $datas->nama_barang }}</td>
+                                            <td>{{ $datas->nama_barang }}</td>
+                                            <td>{{ $datas->qty }}</td>
+                                            <td>{{ number_format($datas->total, 0, 0, '.') }}</td>
+                                            <th style="width: 10%">Dalam pengiriman</th>
+
+                                        </tr>
+
+                                    @endforeach
+
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total Pesanan</td>
+
+                                        <td colspan="6">{{ number_format($total, 0, 0, '.') }}</td>
+                                    </tr>
                             </table>
                         </div>
 

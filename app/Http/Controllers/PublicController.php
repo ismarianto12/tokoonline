@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Klien;
+use App\Models\Pesanan;
 use App\Models\Tmtahunopd;
 use App\Models\Tmuploaddonwload;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use App\Models\Tmparameterdoc;
 use App\Models\Tmunitkerja;
 use DataTables;
 use App\Models\Tmhalaman;
+use App\Models\User;
 
 class PublicController extends Controller
 {
@@ -33,6 +35,19 @@ class PublicController extends Controller
         return view('depan/register', compact('title'));
     }
 
+    public function keranjang()
+    {
+        $title = 'Dashboard user';
+        return view('depan/keranjang', compact('title'));
+    }
+
+
+    public function dashboarduser()
+    {
+        $title = 'Dashboard user';
+        return view('depan/dashboarduser ', compact('title'));
+    }
+
     public function register_act(Request $request)
     {
 
@@ -47,6 +62,12 @@ class PublicController extends Controller
             $d->kabupaten = $request->kabupaten;
             $d->negara = $request->negara;
             $d->save();
+
+            $u = new User();
+            $u->name =  $request->name;
+            $u->username =  $request->username;
+
+            $u->save();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -67,7 +88,10 @@ class PublicController extends Controller
     public function transaksi()
     {
         $title = 'Status Transaksi';
-        return view('depan.transaksi', compact('title'));
+
+        $data = Pesanan::join('barang', 'barang.id', '=', 'pesanan.id_barang')
+            ->get();
+        return view('depan.transaksi', compact('title','data'));
     }
 
     public function Informasi()

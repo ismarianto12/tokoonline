@@ -25,7 +25,6 @@
                 sessionStorage.fonts = true;
             }
         });
-
     </script>
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap.min.css">
@@ -43,8 +42,7 @@
                 <h2 class="title fw-bold text-black mb-3" style="
                 margin-top: -60px;
                 color: #fff;
-            ">BACKEND ADMIN E-SAKIP</h2>
-
+            ">Login aplikasi</h2>
             </div>
         </div>
         <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
