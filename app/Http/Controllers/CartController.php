@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 // use Cart
 use Cart;
-
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -69,13 +69,13 @@ class CartController extends Controller
             // $qty  = $request->qty;
             // $total  = $request->total;
 
-            $id_klien = $item->id;
+            $id_klien = Auth::user()->id;
             $id_barang =  $item->id;
             $status = 1;
             $created_at = Carbon::now();
             $updated_at = Carbon::now();
             $qty = $item->quantity;
-            $total = $item->total; 
+            $total = $item->total;
             $data->save();
         }
     }

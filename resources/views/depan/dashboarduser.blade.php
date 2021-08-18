@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="section-title">
-                <h3 class="title">User Dashboard , Hy {{ Auth::user()->username }}</h3>
+                <h3 class="title">User Dashboard , Hy {{ Session::get('username') }}</h3>
                 <hr />
             </div>
         </div>

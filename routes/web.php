@@ -55,11 +55,16 @@ Route::prefix('api')->name('api.')->group(function () {
     // gettotal
 });
 // index end
-Route::group(['middleware' => ['web', 'user']], function () {
-    Route::get('dashboarduser', [App\Http\Controllers\PublicController::class, 'dashboarduser'])->name('dashboarduser');
-    Route::get('keranjang', [App\Http\Controllers\PublicController::class, 'keranjang'])->name('keranjang');
-    Route::get('transaksi', [App\Http\Controllers\PublicController::class, 'transaksi'])->name('transaksi');
-});
+// Route::group(['middleware' => ['web', 'app']], function () {
+Route::get('dashboarduser', [App\Http\Controllers\PublicController::class, 'dashboarduser'])->name('dashboarduser');
+Route::get('keranjang', [App\Http\Controllers\PublicController::class, 'keranjang'])->name('keranjang');
+Route::get('transaksi', [App\Http\Controllers\PublicController::class, 'transaksi'])->name('transaksi');
+// });
+
+// logouteuser
+// Route::post('/loginact', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('loginact');
+
+
 
 
 Route::get('/Akses', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
@@ -93,7 +98,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-Route::get('user.login', [App\Http\Controllers\UserloginController::class, 'login'])->name('user.login');
+Route::get('user.login', [App\Http\Controllers\UserloginController::class, 'index'])->name('user.login');
+Route::post('action.userlogin', [\App\Http\Controllers\UserloginController::class, 'action'])->name('action.userlogin');
+Route::get('logouteuser', [\App\Http\Controllers\UserloginController::class, 'logouteuser'])->name('logouteuser');
 
 
 Auth::routes([

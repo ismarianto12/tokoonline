@@ -60,10 +60,11 @@
                 </ul>
                 <ul class="header-links pull-right">
 
-                    @if (Auth::user())
+                    @if (Session::get('client_id'))
                         <li><a href="{{ route('dashboarduser') }}"><i class="fa fa-user-o"></i> My Account</a></li>
+                        <li><a href="{{ route('logouteuser') }}"><i class="fa fa-user-o"></i> Logout</a></li>
                     @else
-                        <li><a href="{{ route('login') }}"><i class="fa fa-user-o"></i> Login</a></li>
+                        <li><a href="{{ route('user.login') }}"><i class="fa fa-user-o"></i> Login</a></li>
                     @endif
                 </ul>
             </div>
@@ -148,7 +149,7 @@
                     <li class="active"><a href="{{ Url('/') }}">Home</a></li>
                     <li><a href="{{ route('produk') }}">Produk</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
-                    @if (Auth::user())
+                    @if (Session::get('client_id'))
                         <li><a href="{{ route('transaksi') }}">Status Transaksi</a></li>
                         <li><a href="{{ route('page', 'carabeli') }}">Cara Beli</a></li>
                         <li><a href="{{ route('dashboarduser') }}">Dashboard user</a></li>

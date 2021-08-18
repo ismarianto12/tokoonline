@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Klien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserloginController extends Controller
 {
@@ -16,7 +17,7 @@ class UserloginController extends Controller
     public function index()
     {
         $title = 'Login User';
-        return view('depan/login_user', compact('title', 'produk', 'vf'));
+        return view('depan/login_user', compact('title'));
     }
 
     /**
@@ -24,23 +25,37 @@ class UserloginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function action()
+    public function action(Request $request)
     {
 
-        $username = $this->request->username;
-        $password = $this->request->password;
+        $username = $request->username;
+        $password = $request->password;
         $data = Klien::where([
             'username' => $username,
             'password' => $password,
-        ])->count();
+        ]);
 
-        if ($data > 0) {
-            session()->flash('success', 'Username dan password salah !');
-            return redirect()->intended(route('user.login'));
-        } else {
-            Auth::attempt(['username' => $username, 'password' => $password, 'level' => '1']);
+        if ($data->count() > 0) {
+            $aall =  Session([
+                'client_id' => $data->first()->id,
+                'username' => $data->first()->username,
+                'password' => $data->first()->password
+            ]);
+
+            dd($aall);
             return redirect()->intended(route('dashboarduser'));
+        } else {
+            session()->flash('ket', 'Username dan password salah !');
+            return redirect()->intended(route('user.login'));
         }
+    }
+
+
+    public function logouteuser()
+    {
+        Session::flush();
+        session()->flash('ket', 'Logout berhasil !');
+        return redirect()->intended(route('user.login'));
     }
 
     /**

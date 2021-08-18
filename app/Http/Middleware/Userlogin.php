@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+// use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
 class UserLogin extends Middleware
@@ -15,8 +17,10 @@ class UserLogin extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (Auth::user()) {
+        $level = Session::get('client_id');
+        if ($level) {
             return next($request);
         }
+        return redirect()->intended(route('/'));
     }
 }
