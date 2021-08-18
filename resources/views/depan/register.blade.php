@@ -22,6 +22,16 @@
                         <div class="section-body">
                             <form class="form-horizontal" id="simpan">
                                 <div class="form-group row">
+                                    <label class="col-md-2">Username</label>
+                                    <div class="col-md-4">
+                                        <input type="text" required class="form-control" name="username">
+                                    </div>
+                                    <label class="col-md-2">Password</label>
+                                    <div class="col-md-4">
+                                        <input type="password" required class="form-control" name="password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-md-2">Email</label>
                                     <div class="col-md-4">
                                         <input type="email" required class="form-control" name="email">
@@ -101,6 +111,8 @@
                             '<div class="alert alert-info">Pendaftaran berhasil di lakukan' +
                             +'Silahkan login dengan username email :' + email +
                             'dan password yand di input</div>');
+
+                        window.location.href = "{{ route('dashboarduser') }}";
                     },
                     error: function(data) {
                         $('.register').show();

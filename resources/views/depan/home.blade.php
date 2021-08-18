@@ -16,7 +16,8 @@
                     </div>
                     <div class="shop-body">
                         <h3>{{ $vfs['nama_barang'] }}</h3>
-                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ Url('detail/' . $vfs['id']) }}" class="cta-btn">Shop now <i
+                                class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -130,21 +131,30 @@
     <script>
         // $(function() {  
         function tambah(n) {
-            $.ajax({
+
+            @if (Session::get('client_id'))
+                $.ajax({
                 url: "{{ route('cart.store') }}",
                 data: n,
                 method: "POST",
                 chace: false,
                 asynch: false,
                 success: function(data) {
-                    swal.fire('info', 'data berhasil di tambahkan', 'success');
-                    window.location.reload(true);
+                swal.fire('info', 'data berhasil di tambahkan', 'success');
+                window.location.reload(true);
                 },
                 error: function(data) {
-                    swal.fire('data berhasil di tambahkan');
-
+                swal.fire('data berhasil di tambahkan');
+            
                 }
-            })
+                });
+            @else
+                swal.fire('error', 'Untuk pemesanan silahknan login terlebih dahulu', 'error');
+                window.location.href="{{ route('user.login') }}";
+            
+            @endif
+
+
         }
         // });
     </script>

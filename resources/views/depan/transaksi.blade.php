@@ -27,7 +27,7 @@
                                         <th>Barang</th>
                                         <th>Qty</th>
                                         <th>Total Harga</th>
-                                        <th style="width: 10%">Action</th>
+                                        <th colspan="2" style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,7 +45,30 @@
                                             <td>{{ $datas->nama_barang }}</td>
                                             <td>{{ $datas->qty }}</td>
                                             <td>{{ number_format($datas->total, 0, 0, '.') }}</td>
-                                            <th style="width: 10%">Dalam pengiriman</th>
+                                            <th style="width: 10%">
+                                                @php
+                                                    switch ($datas->status) {
+                                                        case 1:
+                                                            $status = 'Dalam pengiriman';
+                                                            break;
+                                                    
+                                                        case 2:
+                                                            $status = 'Sudah di terima ';
+                                                            break;
+                                                    
+                                                        default:
+                                                            break;
+                                                    }
+                                                @endphp
+                                                {{ $status }}
+
+                                            </th>
+                                            <th style="width: 10%">
+                                                @if ($datas->status == 1)
+                                                    <button id="barang_terima" cf="{{ $datas->id }}"
+                                                        class="btn btn-primary">Barang Di terima</button>
+                                                @endif
+                                            </th>
 
                                         </tr>
 
@@ -68,4 +91,27 @@
             </div>
         </div>
     </div>
+    <script>
+        $(function() {
+            $('#barang_terima').on('click', function(n) {
+                if (confirm('barang akan di terima')) {
+                    n = $(this).attr('cf');
+                    $.ajax({
+                        method: "POST",
+                        url: '{{ route('setstatus') }}',
+                        cache: false,
+                        data: 'id=' + n,
+                        success: function(data) {
+                            swal.fire('success', 'data barang berhasil di terima', 'success');
+                            window.location.reload(true);
+                        },
+                        error: function(data) {
+                            swal.fire('error', 'error barang berhasil di terima', 'success');
+
+                        }
+                    })
+                }
+            });
+        });
+    </script>
 @endsection

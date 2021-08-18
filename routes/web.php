@@ -32,6 +32,9 @@ Route::get('/transaksi', [App\Http\Controllers\PublicController::class, 'transak
 
 Route::post('/register_act', [App\Http\Controllers\PublicController::class, 'register_act'])->name('register_act');
 
+Route::post('/setstatus', [App\Http\Controllers\PublicController::class, 'setstatus'])->name('setstatus');
+Route::get('/detail/{id}', [App\Http\Controllers\PublicController::class, 'detail'])->name('detail');
+
 
 Route::get('/perencanaan', [App\Http\Controllers\PublicController::class, 'perencanaan'])->name('perencanaan');
 Route::get('/informasi', [App\Http\Controllers\PublicController::class, 'informasi'])->name('informasi');

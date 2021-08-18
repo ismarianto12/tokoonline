@@ -28,9 +28,9 @@
                             <tr>
                                 <th></th>
                                 <th>Nama barang</th>
-                                <th>Harga</th>
-                                <th>Lategori</th>
-                                <th>Stok</th>
+                                <th>Jumlah Total</th>
+                                <th>Kategori</th>
+                                <th>Jumlah</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,13 +85,13 @@
                     data: 'nama_barang'
                 },
                 {
-                    data: 'harga'
+                    data: 'total'
                 },
                 {
                     data: 'kategori'
                 },
                 {
-                    data: 'stok'
+                    data: 'qty'
                 },
             ]
         });

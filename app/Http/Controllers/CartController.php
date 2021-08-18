@@ -82,7 +82,7 @@ class CartController extends Controller
                 'id_barang' => $item->id,
                 'status' => 1,
                 'qty' => $item->quantity,
-                'total' => $item->total,
+                'total' => $item->quantity * $item->price,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);

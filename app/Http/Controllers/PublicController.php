@@ -13,6 +13,7 @@ use App\Models\Tmunitkerja;
 use DataTables;
 use App\Models\Tmhalaman;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class PublicController extends Controller
@@ -58,9 +59,21 @@ class PublicController extends Controller
         }
     }
 
+    public function detail($id)
+    {
+        $title = 'Toko Online';
+        $produks = Barang::findOrFail($id);
+        // $vf = Barang::take(3)->orderBy('id', 'asc')->get();
+        return view('depan/detail', compact('title', 'produks'));
+    }
+
     public function register_act(Request $request)
     {
         try {
+            $request->validate([
+                'email' => 'unique:klien,email'
+            ]);
+
             $d = new Klien;
             $d->email = $request->email;
             $d->nama = $request->nama;
@@ -71,8 +84,17 @@ class PublicController extends Controller
             $d->kabupaten = $request->kabupaten;
             $d->negara = $request->negara;
             $d->username =  $request->username;
-            $d->passwrod =  $request->passwrod;
+            $d->password =  $request->password;
             $d->save();
+
+            $idnya = DB::getPdo()->lastInsertId();;
+
+            Session([
+                'client_id' => $idnya,
+                'username' => $d->username,
+                'password' => $d->password
+            ]);
+            return redirect()->intended(route('dashboarduser'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -103,6 +125,14 @@ class PublicController extends Controller
         }
     }
 
+    public function setstatus(Request $request)
+    {
+        $id = $request->id;
+        $barang = Pesanan::where('id_barang', $id)->first()->update([
+            'status' => 2,
+        ]);
+    }
+
     public function Informasi()
     {
         $title = 'Informasi';
@@ -118,98 +148,5 @@ class PublicController extends Controller
     {
         $title = 'Contact dan informasi';
         return view('depan.contact', compact('title'));
-    }
-
-
-    // 
-    public function api()
-    {
-        $data = Tmunitkerja::select('tmunitkerja.nama', 'tmunitkerja.kode')->join('tmuploaddonwload', 'tmunitkerja.id', '=', 'tmuploaddonwload.tmunitkerja_id', 'left')->GroupBy('tmunitkerja.id');
-        $tmuploaddonwload = new Tmuploaddonwload;
-        return DataTables::of($data)
-            ->editColumn('RPJMD', function ($p) use ($tmuploaddonwload) {
-                $data = $tmuploaddonwload->cekfile('RPJMD', $p->id_opd);
-                $jr =  (is_null($data)) ? $data->first()->nama_file : 'Kosong';
-                if ($jr != 'Kosong') {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary"><i class="fa fa-download"></i></a>';
-                } else {
-                    return '<i class="fa fa-strip"></i>';
-                }
-            })
-            ->editColumn('Renstra', function ($p) use ($tmuploaddonwload) {
-                $data = $tmuploaddonwload::cekfile('Renstra', $p->id_opd);
-                $jr =  (is_null($data)) ? $data->first()->nama_file : 'Kosong';
-                if ($jr != 'Kosong') {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary"><i class="fa fa-download"></i></a>';
-                } else {
-                    return '<i class="fa fa-strip"></i>';
-                }
-            })
-            ->editColumn('RKT',  function ($p) use ($tmuploaddonwload) {
-                $data = $tmuploaddonwload::cekfile('RKT', $p->id_opd);
-                $jr =  (is_null($data)) ? $data->first()->nama_file : 'Kosong';
-                if ($jr != 'Kosong') {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary"><i class="fa fa-download"></i></a>';
-                } else {
-                    return '<i class="fa fa-strip"></i>';
-                }
-            })
-            ->editColumn('Renja',  function ($p) use ($tmuploaddonwload) {
-                $data = $tmuploaddonwload::cekfile('Renja', $p->id_opd);
-                $jr =  (is_null($data)) ? $data->first()->nama_file : 'Kosong';
-                if ($jr != 'Kosong') {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary"><i class="fa fa-download"></i></a>';
-                } else {
-                    return '<i class="fa fa-strip"></i>';
-                }
-            })
-            ->editColumn('PK',   function ($p) use ($tmuploaddonwload) {
-                $data = $tmuploaddonwload::cekfile('PK', $p->id_opd);
-                $jr =  (is_null($data)) ? $data->first()->nama_file : 'Kosong';
-                if ($jr != 'Kosong') {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary"><i class="fa fa-download"></i></a>';
-                } else {
-                    return '<i class="fa fa-strip"></i>';
-                }
-            })
-            ->editColumn('PK_P',  function ($p) use ($tmuploaddonwload) {
-                $data = $tmuploaddonwload::cekfile('PK_P', $p->id_opd);
-                $jr =  (is_null($data)) ? $data->first()->nama_file : 'Kosong';
-                if ($jr != 'Kosong') {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary"><i class="fa fa-download"></i></a>';
-                } else {
-                    return '<i class="fa fa-strip"></i>';
-                }
-            })
-            ->editColumn('RA',  function ($p) use ($tmuploaddonwload) {
-                $data = $tmuploaddonwload::cekfile('RA', $p->id_opd);
-                $jr =  (is_null($data)) ? $data->first()->nama_file : 'Kosong';
-                if ($jr != 'Kosong') {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary"><i class="fa fa-download"></i></a>';
-                } else {
-                    return '<i class="fa fa-strip"></i>';
-                }
-            })
-            ->editColumn('Cascading',  function ($p) use ($tmuploaddonwload) {
-                $data = $tmuploaddonwload::cekfile('Cascading', $p->id_opd);
-                $jr =  (is_null($data)) ? $data->first()->nama_file : 'Kosong';
-                if ($jr != 'Kosong') {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary"><i class="fa fa-download"></i></a>';
-                } else {
-                    return '<a href="' . asset('file/gambar/' . $jr) . '" class="btn btn-primary">-</a>';
-                }
-            })
-            ->addIndexColumn()
-            ->rawColumns([
-                'RPJMD',
-                'Renstra',
-                'RKT',
-                'Renja',
-                'PK',
-                'PK_P',
-                'RA',
-                'Cascading',
-            ])
-            ->toJson();
     }
 }

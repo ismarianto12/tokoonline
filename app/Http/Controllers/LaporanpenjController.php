@@ -32,6 +32,8 @@ class LaporanpenjController extends Controller
             'barang.kategori',
             'barang.stok',
             'barang.img',
+            'pesanan.total',
+            'pesanan.qty', 
             'pesanan.id_klien',
             'pesanan.id_barang',
             'pesanan.status'
@@ -40,7 +42,9 @@ class LaporanpenjController extends Controller
             'barang.id',
             '=',
             'pesanan.id_barang'
-        )->get();
+        )
+            ->where('pesanan.status', 2)
+            ->get();
 
         return DataTables::of($data)
             ->editColumn('id', function ($p) {

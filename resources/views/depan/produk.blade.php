@@ -92,23 +92,26 @@
 
     <script>
         function tambah(n) {
-            $.ajax({
+            @if (Session::get('client_id'))
+                $.ajax({
                 url: "{{ route('cart.store') }}",
                 data: n,
                 method: "POST",
                 chace: false,
                 asynch: false,
                 success: function(data) {
-                    // swal.fire('data berhasil di tambah')
-                    swal.fire('info', 'data berhasil di tambahkan', 'success');
-                    window.location.reload(true);
-
+                swal.fire('info', 'data berhasil di tambahkan', 'success');
+                window.location.reload(true);
                 },
                 error: function(data) {
-                    swal.fire('data berhasil di tambahkan')
+                swal.fire('data berhasil di tambahkan');
+            
                 }
-            })
-            // });
+                });
+            @else
+                swal.fire('error', 'Untuk pemesanan silahknan login terlebih dahulu', 'error');
+                window.location.href="{{ route('user.login') }}";
+            @endif
         }
     </script>
 @endsection

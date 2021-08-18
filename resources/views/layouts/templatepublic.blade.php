@@ -150,10 +150,10 @@
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
                     <li class="active"><a href="{{ Url('/') }}">Home</a></li>
-                    <li><a href="{{ route('dashboarduser') }}">Dashboard user</a></li>
                     <li><a href="{{ route('produk') }}">Produk</a></li>
 
                     @if (Session::get('client_id'))
+                        <li><a href="{{ route('dashboarduser') }}">Dashboard user</a></li>
                         <li><a href="{{ route('transaksi') }}">Status Transaksi</a></li>
                         <li><a href="{{ route('page', 'carabeli') }}">Cara Beli</a></li>
                         <li><a href="{{ Url('cart') }}">Keranjang</a></li>
