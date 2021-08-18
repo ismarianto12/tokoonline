@@ -36,14 +36,12 @@ class UserloginController extends Controller
         ]);
 
         if ($data->count() > 0) {
-            $aall =  Session([
+            session([
                 'client_id' => $data->first()->id,
                 'username' => $data->first()->username,
                 'password' => $data->first()->password
             ]);
-
-            dd($aall);
-            return redirect()->intended(route('dashboarduser'));
+             return redirect()->intended(route('dashboarduser'));
         } else {
             session()->flash('ket', 'Username dan password salah !');
             return redirect()->intended(route('user.login'));

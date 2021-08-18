@@ -27,9 +27,6 @@
         @endphp
         <!-- /shop -->
     </div>
-
-
-
     <hr />
     <!-- row -->
     <div class="row">
@@ -130,34 +127,25 @@
         <!-- Products tab & slick -->
     </div>
     <!-- /row -->
-
     <script>
-        // $(function() {
-
-        @if (Auth::user())
-            function tambah(n) {
-        
+        // $(function() {  
+        function tambah(n) {
             $.ajax({
-            url: "{{ route('cart.store') }}",
-            data: n,
-            method: "POST",
-            chace: false,
-            asynch: false,
-            success: function(data) {
-            swal.fire('info', 'data berhasil di tambahkan', 'success');
-            window.location.reload(true);
-            },
-            error: function(data) {
-            swal.fire('data berhasil di tambahkan');
-        
-            }
+                url: "{{ route('cart.store') }}",
+                data: n,
+                method: "POST",
+                chace: false,
+                asynch: false,
+                success: function(data) {
+                    swal.fire('info', 'data berhasil di tambahkan', 'success');
+                    window.location.reload(true);
+                },
+                error: function(data) {
+                    swal.fire('data berhasil di tambahkan');
+
+                }
             })
-            // });
-            }
-        
-        @else
-            window.location.href="{{ route('user.login') }}";
-        @endif
+        }
         // });
     </script>
 

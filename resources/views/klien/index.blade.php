@@ -5,10 +5,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-right">
-                    <button class="btn btn-primary btn-round ml-auto btn-sm" id="add_data">
-                        <i class="fa fa-plus"></i>
-                        Add Row
-                    </button>
+
                     <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
                         <i class="fa fa-minus"></i>
                         Delete selected

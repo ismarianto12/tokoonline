@@ -193,7 +193,8 @@ class Menu_app
         $menu .= self::menu_single(route('master.barang.index'), '<i class="fas fa-list"></i>', 'Produk');
         $menu .= self::menu_single(route('master.klien.index'), '<i class="fas fa-copy"></i>', 'Client');
         $menu .= self::menu_single(route('master.transaksi.index'), '<i class="fas fa-copy"></i>', 'Transaksi');
-  
+        $menu .= self::menu_single(route('master.laporanpenj.index'), '<i class="fas fa-copy"></i>', 'Laporan Penjualan');
+
         // $menu .= self::menu_single(route('master.informasi.index'), '<i class="fas fa-copy"></i>', 'Report ');
         // $menu .= self::menu_single(route('master.halaman.index'), '<i class="fas fa-desktop"></i>', 'Halaman');
         // $menu .= self::menu_single(route('master.tahun.index'), '<i class="fas fa-copy"></i>', 'User');

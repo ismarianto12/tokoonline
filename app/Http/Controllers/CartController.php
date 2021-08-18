@@ -9,9 +9,17 @@ use Illuminate\Http\Request;
 // use Cart
 use Cart;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+
+    public function __construct()
+    {
+    }
+
+
     public function cartList()
     {
         $cartItems = Cart::getContent();
@@ -27,17 +35,24 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        Cart::add([
-            'id' => $request->id,
-            'name' => $request->nama_barang,
-            'price' => $request->harga,
-            'kategori' => $request->kategori,
-            'quantity' => 1
-        ]);
+
+        $session_id = Session::get('client_id');
+        if (!empty($session_id)) {
+            Cart::add([
+                'id' => $request->id,
+                'name' => $request->nama_barang,
+                'price' => $request->harga,
+                'kategori' => $request->kategori,
+                'quantity' => 1
+            ]);
+        } else {
+            return redirect()->intended(route('dashboarduser'));
+        }
     }
 
     public function updateCart(Request $request)
     {
+        // dd($request->all());
         Cart::update(
             $request->id,
             [
@@ -47,6 +62,8 @@ class CartController extends Controller
                 ],
             ]
         );
+        session()->flash('success', 'Berhasil di update !');
+        return redirect()->intended('cart');
     }
 
     public function removeCart(Request $request)
@@ -56,28 +73,23 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
-
-        $cartItems = \Cart::getContent();
+        $cartItems = Cart::getContent();
+        $session_id = Session::get('client_id');
         foreach ($cartItems as $item) {
 
-            $data = new Pesanan;
-            // $id_klien  = $request->id_klien;
-            // $id_barang  = $request->id_barang;
-            // $status  = $request->status;
-            // $created_at  = $request->created_at;
-            // $updated_at  = $request->updated_at;
-            // $qty  = $request->qty;
-            // $total  = $request->total;
-
-            $id_klien = Auth::user()->id;
-            $id_barang =  $item->id;
-            $status = 1;
-            $created_at = Carbon::now();
-            $updated_at = Carbon::now();
-            $qty = $item->quantity;
-            $total = $item->total;
-            $data->save();
+            Pesanan::insert([
+                'id_klien' => $session_id,
+                'id_barang' => $item->id,
+                'status' => 1,
+                'qty' => $item->quantity,
+                'total' => $item->total,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
         }
+        session()->flash('success', 'All Item Cart Clear Successfully !');
+        Cart::clear();
+        return redirect()->intended('transaksi');
     }
 
     public function clearAllCart()

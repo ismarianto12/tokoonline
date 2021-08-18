@@ -104,11 +104,14 @@
 
                             <!-- Cart -->
                             <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span>Keranjang Belanja</span>
-                                    <div class="qty"></div>
-                                </a>
+                                @if (Session::get('client_id'))
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>Keranjang Belanja</span>
+                                        <div class="qty"></div>
+                                    </a>
+                                @endif
+
                                 <div class="cart-dropdown">
                                     <div class="cart-list" id="datanya">
                                     </div>
@@ -147,18 +150,20 @@
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
                     <li class="active"><a href="{{ Url('/') }}">Home</a></li>
+                    <li><a href="{{ route('dashboarduser') }}">Dashboard user</a></li>
                     <li><a href="{{ route('produk') }}">Produk</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+
                     @if (Session::get('client_id'))
                         <li><a href="{{ route('transaksi') }}">Status Transaksi</a></li>
                         <li><a href="{{ route('page', 'carabeli') }}">Cara Beli</a></li>
-                        <li><a href="{{ route('dashboarduser') }}">Dashboard user</a></li>
-                        <li><a href="{{ route('keranjang') }}">Keranjang</a></li>
-                        <li><a href="{{ route('dashboarduser') }}">Dashboard user</a></li>
+                        <li><a href="{{ Url('cart') }}">Keranjang</a></li>
 
                         {{-- dashboarduser
 keranjang
 transaksi --}}
+
+                    @else
+                        <li><a href="{{ route('register') }}">Register</a></li>
                     @endif
                 </ul>
                 <!-- /NAV -->
@@ -262,7 +267,7 @@ transaksi --}}
                             value
                             .price + '</h4>' +
                             '</div>' +
-                            '<button class="delete" onclick="javascript::delete_chart(' + value
+                            '<button class="delete" onclick="javascript:delete_chart(' + value
                             .id +
                             ')"><i class="fa fa-close"></i></button>' +
                             '</div>';
@@ -290,10 +295,11 @@ transaksi --}}
         });
 
         function delete_chart(n) {
+            // alert(n);
             $.ajax({
                 url: "{{ route('cart.remove') }}",
-                data: n,
                 method: "POST",
+                data: 'id=' + n,
                 chace: false,
                 asynch: false,
                 success: function(data) {

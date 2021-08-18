@@ -185,6 +185,8 @@ class BarangController extends Controller
      */
     public function destroy(barang $barang)
     {
+
+        dd($this->request->id);
         try {
             if (is_array($this->request->id)) {
                 $f = barang::whereIn($this->request->id);

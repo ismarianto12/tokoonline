@@ -18,9 +18,8 @@ class UserLogin extends Middleware
     protected function redirectTo($request)
     {
         $level = Session::get('client_id');
-        if ($level) {
-            return next($request);
+        if ($level != '') {
+            return redirect()->intended(route('dashboarduser'));
         }
-        return redirect()->intended(route('/'));
     }
 }

@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
+
+Route::get('dashboarduser', [App\Http\Controllers\PublicController::class, 'dashboarduser'])->name('dashboarduser');
+Route::get('keranjang', [App\Http\Controllers\PublicController::class, 'keranjang'])->name('keranjang');
+Route::get('transaksi', [App\Http\Controllers\PublicController::class, 'transaksi'])->name('transaksi');
+
 Route::get('', [App\Http\Controllers\PublicController::class, 'index'])->name('/');
 Route::get('index.html', [App\Http\Controllers\PublicController::class, 'index'])->name('index.html');
 
@@ -55,17 +60,6 @@ Route::prefix('api')->name('api.')->group(function () {
     // gettotal
 });
 // index end
-// Route::group(['middleware' => ['web', 'app']], function () {
-Route::get('dashboarduser', [App\Http\Controllers\PublicController::class, 'dashboarduser'])->name('dashboarduser');
-Route::get('keranjang', [App\Http\Controllers\PublicController::class, 'keranjang'])->name('keranjang');
-Route::get('transaksi', [App\Http\Controllers\PublicController::class, 'transaksi'])->name('transaksi');
-// });
-
-// logouteuser
-// Route::post('/loginact', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('loginact');
-
-
-
 
 Route::get('/Akses', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/loginact', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('loginact');
@@ -79,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('pesanan', App\Http\Controllers\PesananController::class);
         Route::resource('klien', App\Http\Controllers\KlienController::class);
         Route::resource('transaksi', App\Http\Controllers\PesananController::class);
+        Route::resource('laporanpenj', App\Http\Controllers\LaporanpenjController::class);
     });
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('profil.aspx', [App\Http\Controllers\UserController::class, 'profile'])->name('profil.aspx');
@@ -89,6 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('klien', [App\Http\Controllers\KlienController::class, 'api'])->name('klien');
         Route::post('pesanan', [App\Http\Controllers\PesananController::class, 'api'])->name('pesanan');
         Route::post('halaman', [App\Http\Controllers\TminformasiController::class, 'api'])->name('halaman');
+        Route::post('laporanpenj', [App\Http\Controllers\LaporanpenjController::class, 'api'])->name('laporanpenj');
         // gettotal
     });
 

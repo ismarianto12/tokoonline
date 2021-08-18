@@ -13,6 +13,7 @@ use App\Models\Tmunitkerja;
 use DataTables;
 use App\Models\Tmhalaman;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class PublicController extends Controller
 {
@@ -26,7 +27,6 @@ class PublicController extends Controller
         $title = 'Toko Online';
         $produk = Barang::get();
         $vf = Barang::take(3)->orderBy('id', 'asc')->get();
-
         return view('depan/home', compact('title', 'produk', 'vf'));
     }
     public function register()
@@ -37,20 +37,29 @@ class PublicController extends Controller
 
     public function keranjang()
     {
-        $title = 'Dashboard user';
-        return view('depan/keranjang', compact('title'));
+        $session_id = Session::get('client_id');
+        if ($session_id) {
+            $title = 'Dashboard user';
+            return view('depan/keranjang', compact('title'));
+        } else {
+            return redirect(route('user.login'));
+        }
     }
 
 
     public function dashboarduser()
     {
-        $title = 'Dashboard user';
-        return view('depan/dashboarduser ', compact('title'));
+        $session_id = Session::get('client_id');
+        if ($session_id) {
+            $title = 'Dashboard user';
+            return view('depan/dashboarduser ', compact('title'));
+        } else {
+            return redirect(route('user.login'));
+        }
     }
 
     public function register_act(Request $request)
     {
-
         try {
             $d = new Klien;
             $d->email = $request->email;
@@ -61,13 +70,9 @@ class PublicController extends Controller
             $d->kecamatan = $request->kecamatan;
             $d->kabupaten = $request->kabupaten;
             $d->negara = $request->negara;
+            $d->username =  $request->username;
+            $d->passwrod =  $request->passwrod;
             $d->save();
-
-            $u = new User();
-            $u->name =  $request->name;
-            $u->username =  $request->username;
-
-            $u->save();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -87,11 +92,15 @@ class PublicController extends Controller
     }
     public function transaksi()
     {
-        $title = 'Status Transaksi';
-
-        $data = Pesanan::join('barang', 'barang.id', '=', 'pesanan.id_barang')
-            ->get();
-        return view('depan.transaksi', compact('title','data'));
+        $session_id = Session::get('client_id');
+        if ($session_id) {
+            $title = 'Status Transaksi';
+            $data = Pesanan::join('barang', 'barang.id', '=', 'pesanan.id_barang')
+                ->get();
+            return view('depan.transaksi', compact('title', 'data'));
+        } else {
+            redirect()->route('/login');
+        }
     }
 
     public function Informasi()
