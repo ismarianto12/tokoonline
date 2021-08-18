@@ -73,8 +73,15 @@
                     <div id="tab1" class="tab-pane active">
                         <div class="products-slick" data-nav="#slick-nav-1">
 
+
                             @foreach ($produk as $produks)
                                 <!-- product -->
+                                <input type="hidden" name="nama_barang" value="{{ $produks['nama_barang'] }}">
+                                <input type="hidden" name="harga" value="{{ $produks['harga'] }}">
+                                <input type="hidden" name="id" value="{{ $produks['id'] }}">
+                                <input type="hidden" name="kategori" value="{{ $produks['kategori'] }}">
+
+
                                 <div class="product">
                                     <div class="product-img">
                                         <img src="{{ asset('file/gambar/' . $produks['img']) }}" alt="">
@@ -107,11 +114,14 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                        <button onclick="javascript:tambah({{ $produks }})" type="submit"
+                                            class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>
+                                            add to
                                             cart</button>
                                     </div>
                                 </div>
                                 <!-- /product -->
+
                             @endforeach
 
                         </div>
@@ -124,6 +134,36 @@
         <!-- Products tab & slick -->
     </div>
     <!-- /row -->
+
+    <script>
+        // $(function() {
+
+        @if (Auth::user())
+            function tambah(n) {
+        
+            $.ajax({
+            url: "{{ route('cart.store') }}",
+            data: n,
+            method: "POST",
+            chace: false,
+            asynch: false,
+            success: function(data) {
+            swal.fire('info', 'data berhasil di tambahkan', 'success');
+            window.location.reload(true);
+            },
+            error: function(data) {
+            swal.fire('data berhasil di tambahkan');
+        
+            }
+            })
+            // });
+            }
+        
+        @else
+            window.location.href="{{ route('user.login') }}";
+        @endif
+        // });
+    </script>
 
 
 @endsection

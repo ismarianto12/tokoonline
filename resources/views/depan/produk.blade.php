@@ -71,7 +71,9 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                        <button onclick="javascript:tambah({{ $produks }})" type="submit"
+                                            class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>
+                                            add to
                                             cart</button>
                                     </div>
                                 </div>
@@ -88,4 +90,25 @@
         <!-- Products tab & slick -->
     </div>
 
+    <script>
+        function tambah(n) {
+            $.ajax({
+                url: "{{ route('cart.store') }}",
+                data: n,
+                method: "POST",
+                chace: false,
+                asynch: false,
+                success: function(data) {
+                    // swal.fire('data berhasil di tambah')
+                    swal.fire('info', 'data berhasil di tambahkan', 'success');
+                    window.location.reload(true);
+
+                },
+                error: function(data) {
+                    swal.fire('data berhasil di tambahkan')
+                }
+            })
+            // });
+        }
+    </script>
 @endsection

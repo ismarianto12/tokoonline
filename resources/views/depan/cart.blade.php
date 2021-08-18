@@ -73,15 +73,24 @@
 
                         </tbody>
                     </table>
+
+
                     <div>
-                        Total: ${{ Cart::getTotal() }}
+                        Total: Rp .{{ Cart::getTotal() }}
                     </div>
                     <br />
                     <div>
+                        <form action="{{ route('cart.checkout') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-info">Checkout</button>
+                        </form>
+                        <br />
                         <form action="{{ route('cart.clear') }}" method="POST">
                             @csrf
                             <button class="btn btn-primary">Batalkan pesanan</button>
                         </form>
+                        <br />
+
                     </div>
 
 

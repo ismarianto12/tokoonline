@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ $title }}</title>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -58,7 +59,7 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
+
                     @if (Auth::user())
                         <li><a href="{{ route('dashboarduser') }}"><i class="fa fa-user-o"></i> My Account</a></li>
                     @else
@@ -104,8 +105,8 @@
                             <div class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span>Your Cart</span>
-                                    <div class="qty">3</div>
+                                    <span>Keranjang Belanja</span>
+                                    <div class="qty"></div>
                                 </a>
                                 <div class="cart-dropdown">
                                     <div class="cart-list" id="datanya">
@@ -245,24 +246,32 @@ transaksi --}}
                 method: 'get',
                 success: function(respon) {
                     tablelist = '';
+                    tot = 0;
+
+                    j = 0;
                     $.each(respon, function(index, value) {
+                        tot += value.price;
+                        j += 1;
                         tablelist +=
                             '<div class="product-widget">' +
-                            '<div class="product-img">' +
-                            '<img src="img/product01.png" alt="">' +
-                            '</div>' +
+
                             '<div class="product-body">' +
-                            '<h3 class="product-name"><a href="#">product name goes here</a></h3>' +
-                            '<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>' +
+                            '<h3 class="product-name"><a href="#">' + value.name + '</a></h3>' +
+                            '<h4 class="product-price"><span>' + value.quantity + '</span>' +
+                            value
+                            .price + '</h4>' +
                             '</div>' +
-                            '<button class="delete"><i class="fa fa-close"></i></button>' +
+                            '<button class="delete" onclick="javascript::delete_chart(' + value
+                            .id +
+                            ')"><i class="fa fa-close"></i></button>' +
                             '</div>';
                     });
 
                     $('#datanya').html(tablelist);
+                    $('.qty').html(j);
                     let tapak = '<br /><div class="cart-summary">' +
-                        '<small>3 Item(s) selected</small>' +
-                        '<h5>SUBTOTAL: $2940.00</h5>' +
+                        '<small>' + j + ' Item(s) selected</small>' +
+                        '<h5>Total ' + tot + '</h5>' +
                         '</div>' +
                         '<div class="cart-btns">' +
                         '<a href="#">View Cart</a>' +
@@ -278,6 +287,24 @@ transaksi --}}
             });
 
         });
+
+        function delete_chart(n) {
+            $.ajax({
+                url: "{{ route('cart.remove') }}",
+                data: n,
+                method: "POST",
+                chace: false,
+                asynch: false,
+                success: function(data) {
+                    swal.fire('info', 'data berhasil di hapus', 'success');
+                    window.location.reload(true);
+                },
+                error: function(data) {
+                    swal.fire('data berhasil di tambahkan');
+
+                }
+            })
+        }
     </script>
 
     <script src="{{ asset('/template/technext.github.io/electro/js/') }}/bootstrap.min.js"></script>

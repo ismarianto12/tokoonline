@@ -37,6 +37,7 @@ Route::get('/peraturan', [App\Http\Controllers\Front\PeraturanController::class,
 Route::get('cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('cart.list');
 // nnjson barang
 Route::get('barang_json', [App\Http\Controllers\CartController::class, 'barang_json'])->name('barang_json');
+Route::post('cart.checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout');
 
 Route::post('cart', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('cart.update');
@@ -54,7 +55,7 @@ Route::prefix('api')->name('api.')->group(function () {
     // gettotal
 });
 // index end
-Route::group(['middleware' => ['web','user']], function () {
+Route::group(['middleware' => ['web', 'user']], function () {
     Route::get('dashboarduser', [App\Http\Controllers\PublicController::class, 'dashboarduser'])->name('dashboarduser');
     Route::get('keranjang', [App\Http\Controllers\PublicController::class, 'keranjang'])->name('keranjang');
     Route::get('transaksi', [App\Http\Controllers\PublicController::class, 'transaksi'])->name('transaksi');
@@ -90,6 +91,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('peraturan', [App\Http\Controllers\PeraturanController::class, 'api'])->name('peraturan');
     });
 });
+
+
+Route::get('user.login', [App\Http\Controllers\UserloginController::class, 'login'])->name('user.login');
 
 
 Auth::routes([
