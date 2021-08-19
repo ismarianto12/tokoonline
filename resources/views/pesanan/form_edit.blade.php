@@ -4,6 +4,7 @@
     </div>
     <div class="ket"></div>
     <form id="exampleValidation" method="POST" class="simpan" enctype="multipart/form-data">
+        {{ method_field('PUT') }}
         <div class="card-body">
             <div class="form-group row">
                 <label for="name" class="col-md-2 text-left">Pemesan</label>
@@ -85,7 +86,7 @@
 
             var datastring = new FormData(this);
             $.ajax({
-                url: "{{ route('master.pesanan.update', $id) }}",
+                url: "{{ route('master.transaksi.update', $id) }}",
                 method: "POST",
                 data: datastring,
                 cache: false,

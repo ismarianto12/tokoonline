@@ -90,15 +90,17 @@ class PesananController extends Controller
      */
     public function edit($id)
     {
-        $data = Pesanan::join('barang', 'barang.id', '=', 'pesanan.id_barang')
-            ->where('barang.id', $id)
+        $data = Pesanan::join('barang', 'barang.id', '=', 'pesanan.id_barang','LEFT OUTER')
+        ->join('klien', 'pesanan.id_klien', '=', 'klien.id','LEFT')
+            ->where('klien.id', $id)
             ->first();
-        $namapemesan = $data->nama;
+        $namapemesan = $data['nama'];
         $barang = $data->nama_barang;
         $jumlah = $data->qty;
         $harga = $data->harga;
 
         return view('pesanan.form_edit', [
+            'id'=> $id,
             'namapemesan' => $namapemesan,
             'barang' => $barang,
             'jumlah' => $jumlah,

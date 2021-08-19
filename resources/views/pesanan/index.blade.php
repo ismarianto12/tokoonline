@@ -155,7 +155,7 @@
                 e.preventDefault();
                 $('#formmodal').modal('show');
                 id = $(this).data('id');
-                addUrl = '{{ route('master.barang.edit', ':id') }}'.replace(':id', id);
+                addUrl = '{{ route('master.pesanan.edit', ':id') }}'.replace(':id', id);
                 $('#form_content').html('<center><h3>Loading Edit Data ...</h3></center>').load(addUrl);
 
             })
