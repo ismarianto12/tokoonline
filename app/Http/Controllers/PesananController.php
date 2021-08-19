@@ -88,9 +88,22 @@ class PesananController extends Controller
      * @param  \App\Models\pesanan  $pesanan
      * @return \Illuminate\Http\Response
      */
-    public function edit(pesanan $pesanan)
+    public function edit($id)
     {
-        //
+        $data = Pesanan::join('barang', 'barang.id', '=', 'pesanan.id_barang')
+            ->where('barang.id', $id)
+            ->first();
+        $namapemesan = $data->nama;
+        $barang = $data->nama_barang;
+        $jumlah = $data->qty;
+        $harga = $data->harga;
+
+        return view('pesanan.form_edit', [
+            'namapemesan' => $namapemesan,
+            'barang' => $barang,
+            'jumlah' => $jumlah,
+            'harga' => $harga,
+        ]);
     }
 
     /**
@@ -100,9 +113,16 @@ class PesananController extends Controller
      * @param  \App\Models\pesanan  $pesanan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pesanan $pesanan)
+    public function update(Request $request, $id)
     {
-        //
+        $status = $request->status;
+        Pesanan::where('id', $id)->update([
+            'status' => $status
+        ]);
+        return response()->json([
+            'status' => 1,
+            'msg' => 'data user berhasil dtambah'
+        ]);
     }
 
     /**

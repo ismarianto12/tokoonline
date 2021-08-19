@@ -6,10 +6,6 @@
             <div class="card-header">
                 <div class="d-flex align-items-right">
 
-                    <button class="btn btn-danger btn-round btn-sm" id="add_data" onclick="javascript:confirm_del()">
-                        <i class="fa fa-minus"></i>
-                        Delete selected
-                    </button>
                 </div>
             </div>
             <div class="card-body">

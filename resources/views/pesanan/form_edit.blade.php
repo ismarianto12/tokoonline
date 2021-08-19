@@ -6,33 +6,33 @@
     <form id="exampleValidation" method="POST" class="simpan" enctype="multipart/form-data">
         <div class="card-body">
             <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Nama barang</label>
+                <label for="name" class="col-md-2 text-left">Pemesan</label>
                 <div class="col-md-4">
-                    <input type="text" name="nama_barang" value="{{ $nama_barang }}" class="form-control">
+                    <input type="text" name="nama_barang" value="{{ $namapemesan }}" class="form-control">
+                </div>
+                <label for="name" class="col-md-2 text-left">Barang</label>
+                <div class="col-md-4">
+                    <input type="text" name="harga" value="{{ $barang }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-md-2 text-left">jumlah</label>
+                <div class="col-md-4">
+                    <input type="text" name="kategori" value="{{ $jumlah }}" class="form-control">
                 </div>
                 <label for="name" class="col-md-2 text-left">Harga</label>
                 <div class="col-md-4">
-                    <input type="text" name="harga" value="{{ $harga }}" class="form-control">
+                    <input type="number" name="stok" value="{{ $harga }}" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Kategori</label>
+                <label for="name" class="col-md-2 text-left">Status</label>
                 <div class="col-md-4">
-                    <input type="text" name="kategori" value="{{ $kategori }}" class="form-control">
-                </div>
-                <label for="name" class="col-md-2 text-left">Stok</label>
-                <div class="col-md-4">
-                    <input type="number" name="stok" value="{{ $stok }}" class="form-control">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="name" class="col-md-2 text-left">Gambar</label>
-                <div class="col-md-4">
-                    <img src="{{ asset('assets') }}/img/{{ $img }}" alt="" class="header-avatar"
-                        id="cc_upload_preview" class="img-responsive" style="width: 200px;height: 250px"
-                        onerror="this.onerror=null;this.src='{{ asset('assets') }}/img/profile.jpg';">
-                    <br /> <br />
-                    <input type="file" name="img" class="form-control">
+                    <select class="form-contol" name="status">
+                        <option value="1">Proses Pengiriman</option>
+                        <option value="2">Sudah deterima</option>
+
+                    </select>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
 
             var datastring = new FormData(this);
             $.ajax({
-                url: "{{ route('master.barang.update', $id) }}",
+                url: "{{ route('master.pesanan.update', $id) }}",
                 method: "POST",
                 data: datastring,
                 cache: false,
@@ -95,7 +95,7 @@
                     $.notify({
                         icon: 'flaticon-loading-1',
                         title: 'Processing',
-                        message: 'Sedang Memproses Penyimpanan Data .....',
+                        message: 'Sedang Update Pesanan .....',
                     }, {
                         type: 'secondary',
                         placement: {
