@@ -105,6 +105,11 @@
                     asynch: false,
                     method: 'post',
                     success: function(data) {
+
+                        swal.fire('info',
+                            'pendaftaran berhasil sistem mengalihkan otomatis ke halaman login ......',
+                            'success');
+
                         var email = $('input[name="email"]').val();
                         $('.register').hide();
 
