@@ -102,8 +102,8 @@
                         cache: false,
                         data: 'id=' + n,
                         success: function(data) {
-                            swal.fire('success', 'data barang berhasil di terima', 'success');
-                            window.location.reload(true);
+                            // swal.fire('success', 'data barang berhasil di terima', 'success');
+                            // window.location.reload(true);
                         },
                         error: function(data) {
                             swal.fire('error', 'error barang berhasil di terima', 'success');

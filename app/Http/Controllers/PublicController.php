@@ -128,7 +128,7 @@ class PublicController extends Controller
     public function setstatus(Request $request)
     {
         $id = $request->id;
-        $barang = Pesanan::where('id_barang', $id)->first()->update([
+        Pesanan::where('id_barang', $id)->update([
             'status' => 2,
         ]);
     }
