@@ -121,7 +121,7 @@ class PublicController extends Controller
                 ->get();
             return view('depan.transaksi', compact('title', 'data'));
         } else {
-            redirect()->route('/login');
+            redirect()->route('user.login');
         }
     }
 
