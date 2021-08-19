@@ -15,7 +15,7 @@
                     </div>
                     <div class="register">
                         <div class="section-title">
-                            <h3 class="title">Register</h3>
+                            <h3 class="title"><i class="fa fa-user"></i>Daftar User</h3>
                         </div>
 
                         <hr />
@@ -107,6 +107,7 @@
                     success: function(data) {
                         var email = $('input[name="email"]').val();
                         $('.register').hide();
+
                         $('.ket').html(
                             '<div class="alert alert-info">Pendaftaran berhasil di lakukan' +
                             +'Silahkan login dengan username email :' + email +
@@ -115,6 +116,12 @@
                         window.location.href = "{{ route('dashboarduser') }}";
                     },
                     error: function(data) {
+                        err = '';
+                        respon = data.responseJSON;
+                        $.each(respon.errors, function(index, value) {
+                            err += "<li>" + value + "</li>";
+                        });
+                        $('.ket').html('<p>' + err + '</p>');
                         $('.register').show();
                         console.log(data);
                     }
