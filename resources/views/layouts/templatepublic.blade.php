@@ -61,7 +61,7 @@
                 <ul class="header-links pull-right">
 
                     @if (Session::get('client_id'))
-                        <li><a href="{{ route('dashboarduser') }}"><i class="fa fa-user-o"></i> My Account</a></li>
+                        <li><a href="{{ route('dashboarduser') }}"><i class="fa fa-user-o"></i> Dashboard</a></li>
                         <li><a href="{{ route('logouteuser') }}"><i class="fa fa-user-o"></i> Logout</a></li>
                     @else
                         <li><a href="{{ route('user.login') }}"><i class="fa fa-user-o"></i> Login</a></li>

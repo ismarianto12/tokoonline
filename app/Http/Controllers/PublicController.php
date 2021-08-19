@@ -87,14 +87,14 @@ class PublicController extends Controller
             $d->password =  $request->password;
             $d->save();
 
-            $idnya = DB::getPdo()->lastInsertId();;
+            // $idnya = DB::getPdo()->lastInsertId();;
 
-            Session([
-                'client_id' => $idnya,
-                'username' => $d->username,
-                'password' => $d->password
-            ]);
-            return redirect()->intended(route('dashboarduser'));
+            // Session([
+            //     'client_id' => $idnya,
+            //     'username' => $d->username,
+            //     'password' => $d->password
+            // ]);
+            return redirect()->intended(route('user.login'));
         } catch (\Throwable $th) {
             throw $th;
         }
