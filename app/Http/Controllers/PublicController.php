@@ -118,6 +118,7 @@ class PublicController extends Controller
         if ($session_id) {
             $title = 'Status Transaksi';
             $data = Pesanan::join('barang', 'barang.id', '=', 'pesanan.id_barang')
+                ->where('id_klien', $session_id)
                 ->get();
             return view('depan.transaksi', compact('title', 'data'));
         } else {

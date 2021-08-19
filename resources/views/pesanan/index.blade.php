@@ -41,7 +41,7 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Pemesan</th>
+                                <th>Nama Konsumen</th>
                                 <th>Barang</th>
                                 <th>Qty</th>
                                 <th>Total Harga</th>
