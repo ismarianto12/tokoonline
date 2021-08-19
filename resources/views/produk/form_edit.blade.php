@@ -4,6 +4,8 @@
     </div>
     <div class="ket"></div>
     <form id="exampleValidation" method="POST" class="simpan" enctype="multipart/form-data">
+        {{ method_field('PUT') }}
+
         <div class="card-body">
             <div class="form-group row">
                 <label for="name" class="col-md-2 text-left">Nama barang</label>
@@ -87,8 +89,12 @@
             $.ajax({
                 url: "{{ route('master.barang.update', $id) }}",
                 method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 data: datastring,
                 cache: false,
+                asynch: false,
                 contentType: false,
                 processData: false,
                 beforeSend: function() {

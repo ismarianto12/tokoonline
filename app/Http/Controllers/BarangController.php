@@ -146,8 +146,10 @@ class BarangController extends Controller
      * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, barang $barang, $id)
-    {
+    public function update($id)
+    { 
+
+        // dd($this->request->all());
         try {
             $f = barang::find($id);
             $tgl = Carbon::now()->format('y-m-d');
