@@ -18,7 +18,7 @@ class BarangController extends Controller
     protected $request;
     protected $route;
     protected $view;
-    
+
     function __construct(Request $request)
     {
         $this->request = $request;
@@ -49,7 +49,7 @@ class BarangController extends Controller
         return DataTables::of($data)
             ->editColumn('id', function ($p) {
                 return "<input type='checkbox' name='cbox[]' value='" . $p->id . "' />";
-            })
+            }, true)
             ->editColumn('action', function ($p) {
                 return  '<a href="" class="btn btn-warning btn-xs" id="edit" data-id="' . $p->id . '"><i class="fa fa-edit"></i>Edit </a> ';
             }, true)
@@ -183,13 +183,13 @@ class BarangController extends Controller
      * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(barang $barang)
+    public function destroy()
     {
-
-        dd($this->request->id);
+        // dd($this->request->id);
         try {
+
             if (is_array($this->request->id)) {
-                $f = barang::whereIn($this->request->id);
+                $f = barang::whereIn('id', $this->request->id);
                 $f->delete();
             } else {
                 $f = barang::whereid($this->request->id);

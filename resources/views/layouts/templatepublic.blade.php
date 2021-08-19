@@ -10,7 +10,7 @@
 
     <title>{{ $title }}</title>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <meta content='no-cache' name='turbolinks-cache-control' />
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
